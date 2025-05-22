@@ -1,0 +1,120 @@
+mcp response :
+resources/list
+▼
+Request:
+
+{
+  "method": "resources/list",
+  "params": {}
+}
+Response:
+
+{
+  "resources": [
+    {
+      "uri": "postgres://admin@localhost:5431/vehicles/schema",
+      "name": "\"vehicles\" database schema",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "postgres://admin@localhost:5431/stations/schema",
+      "name": "\"stations\" database schema",
+      "mimeType": "application/json"
+    }
+  ]
+}
+
+tool :
+tools/list
+▼
+Request:
+
+{
+  "method": "tools/list",
+  "params": {}
+}
+Response:
+
+{
+  "tools": [
+    {
+      "name": "query",
+      "description": "Run a read-only SQL query against the database.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sql": {
+            "type": "string",
+            "description": "The SQL query to execute (must be read-only)."
+          }
+        },
+        "required": [
+          "sql"
+        ]
+      }
+    }
+  ]
+}
+tools/call
+▼
+Request:
+
+{
+  "method": "tools/call",
+  "params": {
+    "name": "query",
+    "arguments": {
+      "sql": "select * from vehicles as v join stations as s on v.county = s.county limit 5;"
+    },
+    "_meta": {
+      "progressToken": 0
+    }
+  }
+}
+Response:
+
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "[\n  {\n    \"vin\": \"5YJ3E1EBXK\",\n    \"county\": \"King\",\n    \"city\": \"Seattle\",\n    \"state\": \"WA\",\n    \"postal_code\": \"98178\",\n    \"model_year\": 2019,\n    \"make\": \"TESLA\",\n    \"model\": \"MODEL 3\",\n    \"electric_vehicle_type\": \"Battery Electric Vehicle (BEV)\",\n    \"cafv_eligibility\": \"Clean Alternative Fuel Vehicle Eligible\",\n    \"electric_range\": 220,\n    \"base_msrp\": 0,\n    \"legislative_district\": 37,\n    \"dol_vehicle_id\": \"477309682\",\n    \"vehicle_location\": \"POINT (-122.23825 47.49461)\",\n    \"electric_utility\": \"CITY OF SEATTLE - (WA)|CITY OF TACOMA - (WA)\",\n    \"census_tract_2020\": \"53033011902\",\n    \"no_of_ev_charging_stations\": 1200\n  },\n  {\n    \"vin\": \"5YJYGDEE3L\",\n    \"county\": \"Kitsap\",\n    \"city\": \"Poulsbo\",\n    \"state\": \"WA\",\n    \"postal_code\": \"98370\",\n    \"model_year\": 2020,\n    \"make\": \"TESLA\",\n    \"model\": \"MODEL Y\",\n    \"electric_vehicle_type\": \"Battery Electric Vehicle (BEV)\",\n    \"cafv_eligibility\": \"Clean Alternative Fuel Vehicle Eligible\",\n    \"electric_range\": 291,\n    \"base_msrp\": 0,\n    \"legislative_district\": 23,\n    \"dol_vehicle_id\": \"109705683\",\n    \"vehicle_location\": \"POINT (-122.64681 47.73689)\",\n    \"electric_utility\": \"PUGET SOUND ENERGY INC\",\n    \"census_tract_2020\": \"53035091100\",\n    \"no_of_ev_charging_stations\": 150\n  },\n  {\n    \"vin\": \"KM8KRDAF5P\",\n    \"county\": \"Kitsap\",\n    \"city\": \"Olalla\",\n    \"state\": \"WA\",\n    \"postal_code\": \"98359\",\n    \"model_year\": 2023,\n    \"make\": \"HYUNDAI\",\n    \"model\": \"IONIQ 5\",\n    \"electric_vehicle_type\": \"Battery Electric Vehicle (BEV)\",\n    \"cafv_eligibility\": \"Eligibility unknown as battery range has not been researched\",\n    \"electric_range\": 0,\n    \"base_msrp\": 0,\n    \"legislative_district\": 26,\n    \"dol_vehicle_id\": \"230390492\",\n    \"vehicle_location\": \"POINT (-122.54729 47.42602)\",\n    \"electric_utility\": \"PUGET SOUND ENERGY INC\",\n    \"census_tract_2020\": \"53035092802\",\n    \"no_of_ev_charging_stations\": 150\n  },\n  {\n    \"vin\": \"5UXTA6C0XM\",\n    \"county\": \"Kitsap\",\n    \"city\": \"Seabeck\",\n    \"state\": \"WA\",\n    \"postal_code\": \"98380\",\n    \"model_year\": 2021,\n    \"make\": \"BMW\",\n    \"model\": \"X5\",\n    \"electric_vehicle_type\": \"Plug-in Hybrid Electric Vehicle (PHEV)\",\n    \"cafv_eligibility\": \"Clean Alternative Fuel Vehicle Eligible\",\n    \"electric_range\": 30,\n    \"base_msrp\": 0,\n    \"legislative_district\": 35,\n    \"dol_vehicle_id\": \"267929112\",\n    \"vehicle_location\": \"POINT (-122.81585 47.64509)\",\n    \"electric_utility\": \"PUGET SOUND ENERGY INC\",\n    \"census_tract_2020\": \"53035091301\",\n    \"no_of_ev_charging_stations\": 150\n  },\n  {\n    \"vin\": \"JTMAB3FV7P\",\n    \"county\": \"Thurston\",\n    \"city\": \"Rainier\",\n    \"state\": \"WA\",\n    \"postal_code\": \"98576\",\n    \"model_year\": 2023,\n    \"make\": \"TOYOTA\",\n    \"model\": \"RAV4 PRIME\",\n    \"electric_vehicle_type\": \"Plug-in Hybrid Electric Vehicle (PHEV)\",\n    \"cafv_eligibility\": \"Clean Alternative Fuel Vehicle Eligible\",\n    \"electric_range\": 42,\n    \"base_msrp\": 0,\n    \"legislative_district\": 2,\n    \"dol_vehicle_id\": \"236505139\",\n    \"vehicle_location\": \"POINT (-122.68993 46.88897)\",\n    \"electric_utility\": \"PUGET SOUND ENERGY INC\",\n    \"census_tract_2020\": \"53067012530\",\n    \"no_of_ev_charging_stations\": 200\n  }\n]"
+    }
+  ],
+  "isError": false
+}
+
+
+
+
+---------------------------------------------------------------------------------------
+
+before writing sql command be within this baundry of the sql schema is provided below : 
+   \`\`\`sql
+   CREATE TABLE vehicles (
+  vin VARCHAR(10) PRIMARY KEY,
+  county TEXT,
+  city TEXT,
+  state TEXT,
+  postal_code TEXT,
+  model_year INT,
+  make TEXT,
+  model TEXT,
+  electric_vehicle_type TEXT,
+  cafv_eligibility TEXT,
+  electric_range INT,
+  base_msrp INT,
+  legislative_district INT,
+  dol_vehicle_id TEXT,
+  vehicle_location TEXT,
+  electric_utility TEXT,
+  census_tract_2020 TEXT
+);
+
+   \`\`\` and another table schema is for no of ev charing station in washington dc / washington dc county:
+   \`\`\`sql
+   CREATE TABLE stations (
+    County VARCHAR(255),
+    No_of_EV_Charging_Stations INT
+);
+
+   \`\`\`
